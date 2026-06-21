@@ -33,9 +33,9 @@ async function runCheck(service) {
   const storedResult = {
     service_id: service.id,
     timestamp,
-    success: rawResult.success ? 1 : 0,
+    success: isMaintenance ? 1 : (rawResult.success ? 1 : 0),
     response_time_ms: rawResult.response_time_ms ?? null,
-    error_message: rawResult.error_message || null,
+    error_message: isMaintenance ? null : (rawResult.error_message || null),
     status_code: rawResult.status_code ?? null,
     is_maintenance: isMaintenance ? 1 : 0
   }
